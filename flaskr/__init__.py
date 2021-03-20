@@ -25,11 +25,16 @@ def create_app(test_config=None):
     
     except OSError:
         pass
+    
+
+    @app.route('/')
+    def index():
+        return 'index'
 
     @app.route('/hello')
     def hello():
-        return 'Dhiv is building flask.'
-    
+        return 'Dhiv is building with flask.'
+      
     from . import db
     db.init_app(app)
 

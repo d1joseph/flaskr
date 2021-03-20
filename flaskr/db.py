@@ -1,6 +1,6 @@
 # sqlite3 supported as a builtin of python. 
 # sqlite3 is sequential in crud operations therefore we are limited in concurrency
-# g is a unique object for each request. The connection is stored and reused for each unique request
+# g is a unique object for each request. The connection is stored and reused for each unique request in g
 # current_app points to the Flask app handling the request
 # sqlite3.connect() establishes a db connection
 # sqlite3.Row returns rows that behave like dicts

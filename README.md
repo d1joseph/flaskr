@@ -1,1 +1,1 @@
-A collection of projects using various frameworks.
+A collection of projects I've created using various frameworks.
