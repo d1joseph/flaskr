@@ -1,16 +1,15 @@
-# authorisation function for /auth view
+# authorisation module for auth view utilizing blueprints
 import functools
 
 from flask import (
     Blueprint, flash, g, redirect, render_template,
     request, session, url_for
 )
-
 from werkzeug.security import check_password_hash, generate_password_hash
 from flaskr.db import get_db
 
+
 # initialise blueprint for auth view
-# user registration, log in and log out 
 bp = Blueprint(
     'auth',
     __name__,
@@ -40,7 +39,7 @@ def register():
         ).fetchone() is not None:
             error = '{} is already registered.'.format(username)
 
-        # if new user updated the db, hash the password and commit the changes
+        # if new user update the db, hash the password and create record
         if error is None:
             db.execute(
                 'INSERT INTO user (username, password) VALUES (?, ?)',
@@ -83,7 +82,7 @@ def login():
     return render_template('auth/login.html')
 
 
-# load stored session data before any request
+# load stored session data before any request - cookies
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -96,14 +95,14 @@ def load_logged_in_user():
         ).fetchone()
 
 
-# log the user out and clear session
+# log the user out and end session
 @bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
 
 
-# require login for creating, editing and deleting posts i.e. user actions
+# require login for any user CRUD operations
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
