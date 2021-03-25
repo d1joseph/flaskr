@@ -1,1 +1,0 @@
-A collection of projects I've created using various frameworks.
