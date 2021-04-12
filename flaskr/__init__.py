@@ -4,7 +4,7 @@ import os
 from flask import Flask
 
 def create_app(test_config=None):
-    # create and configure app
+    # create and use configurations for app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY = 'dev',
@@ -41,10 +41,12 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # registered blueprints from view responses 
+    
     # authorisation
     from . import auth
     app.register_blueprint(auth.bp)
     
+    # blogging
     from . import blog
     app.register_blueprint(blog.bp)
     app.add_url_rule('/', endpoint='index')
