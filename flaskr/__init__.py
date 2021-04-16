@@ -28,14 +28,14 @@ def create_app(test_config=None):
     
 
     # routing
-    @app.route('/')
+    """@app.route('/')
     def index():
         return 'index'
 
     @app.route('/hello')
     def hello():
         return 'Dhiv is building with flask.'
-    
+    """
     # db
     from . import db
     db.init_app(app)
