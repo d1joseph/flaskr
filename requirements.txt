@@ -31,6 +31,7 @@ fasteners==0.14.1
 filelock==3.0.12
 fire==0.4.0
 Flask==1.1.2
+-e git+https://github.com/d1joseph/flaskr.git@9203e01bea77844e555d315b9c7f449efc9e10f1#egg=flaskr
 future==0.18.2
 html5lib==1.0.1
 httplib2==0.14.0
