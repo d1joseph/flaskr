@@ -2,7 +2,7 @@ import os
 import tempfile
 
 import pytest
-from flaskr import create_app
+from flaskr import Flask
 from flaskr.db import get_db, init_db
 
 with open(os.path.join(os.path.dirname(__file__), 'data.sql'), 'rb') as f:
@@ -42,13 +42,10 @@ class AuthActions(object):
     def __init__(self, client):
         self._client = client
 
-    def login(self, username='Test', password='test'):
+    def login(self, username='test', password='test'):
         return self._client.post(
             '/auth/login',
-            data = {
-                'username': username,
-                'password': password
-            }
+            data={'username': username, 'password': password}
         )
 
     def logout(self):
